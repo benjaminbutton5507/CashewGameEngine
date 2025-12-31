@@ -1,0 +1,38 @@
+{
+  "configurations": [
+    {
+      "name": "Win32",
+      "includePath": [
+        "${workspaceFolder}"
+      ],
+      "defines": [
+        "CASHEW_PLATFORM_WINDOWS"
+      ],
+      "cStandard": "c23",
+      "cppStandard": "c++23"
+    },
+    {
+      "name": "Linux",
+      "includePath": [
+        "${workspaceFolder}"
+      ],
+      "defines": [
+        "CASHEW_PLATORM_LINUX"
+      ],
+      "cStandard": "c23",
+      "cppStandard": "c++23"
+    },
+    {
+      "name": "Mac",
+      "includePath": [
+        "${workspaceFolder}"
+      ],
+      "defines": [
+        "CASHEW_PLATORM_MAC"
+      ],
+      "cStandard": "c23",
+      "cppStandard": "c++23"
+    }
+  ],
+  "version": 4
+}
