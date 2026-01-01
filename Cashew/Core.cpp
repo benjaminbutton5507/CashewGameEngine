@@ -21,7 +21,7 @@ namespace Cashew
   {
     bool CheckCompatability()
     {
-      if (std::strcmp(OperatingSystem, "Linux"))
+      if (strcmp(OperatingSystem, "Linux"))
         return true;
       return false;
     }
@@ -34,7 +34,7 @@ namespace Cashew
   {
     bool CheckCompatability()
     {
-      if (std::strcmp(OperatingSystem, "Mac"))
+      if (strcmp(OperatingSystem, "Mac"))
         return true;
       return false;
     }

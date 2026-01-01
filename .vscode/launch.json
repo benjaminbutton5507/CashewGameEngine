@@ -5,12 +5,12 @@
       "name": "Debug Win32 Sandbox",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${workspaceFolder}\\Build\\Release\\sandbox.exe",
+      "program": "${workspaceFolder}\\Build\\Debug\\sandbox.exe",
       "args": [],
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}",
       "environment": [],
-      "externalConsole": false,
+      "externalConsole": true,
       "MIMode": "gdb",
       "miDebuggerPath": "c:\\msys64\\ucrt64\\bin\\gdb.exe",
       "setupCommands": [
@@ -20,7 +20,7 @@
           "ignoreFailures": true
         }
       ],
-      "preLaunchTask": "Build Release Win32 Sandbox"
+      "preLaunchTask": "Build Debug Win32 Sandbox"
     }
   ]
 }

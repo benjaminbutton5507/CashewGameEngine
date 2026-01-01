@@ -7,6 +7,7 @@
     "editor.formatOnSave": true,
     "editor.wordWrap": "on",
     "editor.fontFamily": "'Fira Code', Consolas, monospace",
+    "editor.fontSize": 13,
     "editor.fontLigatures": true,
     "editor.lineHeight": 1,
     // Minimap

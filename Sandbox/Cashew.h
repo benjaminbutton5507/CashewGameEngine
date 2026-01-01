@@ -1,3 +1,4 @@
 #pragma once
 
-#include "../Cashew/src/Core.h"
+#include "../Cashew/Core.h"
+#include "../Cashew/Application/Application.h"

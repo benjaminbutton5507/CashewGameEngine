@@ -1,6 +1,30 @@
 {
   "tasks": [
     {
+      "label": "Clean",
+      "type": "shell",
+      "command": "make",
+      "args": [
+        "clean"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      }
+    },
+    {
+      "label": "Build all",
+      "type": "shell",
+      "dependsOn": [
+        "Build Release Win32 Sandbox",
+        "Build Debug Win32 Sandbox"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      }
+    },
+    {
       "label": "Build Release Win32 Sandbox",
       "type": "shell",
       "command": "C:\\msys64\\ucrt64\\bin\\g++.exe",
@@ -10,7 +34,7 @@
         "${workspaceFolder}\\Sandbox\\main.cpp",
         "-o",
         "${workspaceFolder}\\Build\\Release\\sandbox.exe",
-        "-I${workspaceFolder}/Cashew/src",
+        "-I${workspaceFolder}\\Cashew",
         "-L${workspaceFolder}\\Build\\Release\\lib",
         "-lCashew"
       ],
@@ -20,6 +44,29 @@
       },
       "dependsOn": [
         "Build Release Win32 Cashew DLL"
+      ]
+    },
+    {
+      "label": "Build Debug Win32 Sandbox",
+      "type": "shell",
+      "command": "C:\\msys64\\ucrt64\\bin\\g++.exe",
+      "args": [
+        "-g",
+        "-m64",
+        "-DCASHEW_PLATFORM_WINDOWS",
+        "${workspaceFolder}\\Sandbox\\main.cpp",
+        "-o",
+        "${workspaceFolder}\\Build\\Debug\\sandbox.exe",
+        "-I${workspaceFolder}\\Cashew",
+        "-L${workspaceFolder}\\Build\\Debug\\lib",
+        "-lCashew"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      },
+      "dependsOn": [
+        "Build Debug Win32 Cashew DLL"
       ]
     },
     {
@@ -33,7 +80,8 @@
         "-DCASHEW_EXPORTS",
         "-o",
         "${workspaceFolder}\\Build\\Release\\Cashew.dll",
-        "${workspaceFolder}\\Cashew\\src\\Core.cpp",
+        "${workspaceFolder}\\Cashew\\Core.cpp",
+        "${workspaceFolder}\\Cashew\\Application\\Application.cpp",
         "-Wl,--out-implib",
         "${workspaceFolder}\\Build\\Release\\lib\\Cashew.lib",
         "-I${workspaceFolder}/Cashew/src"
@@ -53,7 +101,39 @@
       }
     },
     {
-      "label": "Run Win32 Sandbox",
+      "label": "Build Debug Win32 Cashew DLL",
+      "type": "shell",
+      "command": "C:\\msys64\\ucrt64\\bin\\g++.exe",
+      "args": [
+        "-g",
+        "-m64",
+        "-shared",
+        "-DCASHEW_PLATFORM_WINDOWS",
+        "-DCASHEW_EXPORTS",
+        "-o",
+        "${workspaceFolder}\\Build\\Debug\\Cashew.dll",
+        "${workspaceFolder}\\Cashew\\Core.cpp",
+        "${workspaceFolder}\\Cashew\\Application\\Application.cpp",
+        "-Wl,--out-implib",
+        "${workspaceFolder}\\Build\\Debug\\lib\\Cashew.lib",
+        "-I${workspaceFolder}/Cashew/src"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      },
+      "options": {
+        "shell": {
+          "executable": "cmd.exe",
+          "args": [
+            "/d",
+            "/c"
+          ]
+        }
+      }
+    },
+    {
+      "label": "Run Release Win32 Sandbox",
       "type": "shell",
       "command": "start",
       "args": [
@@ -63,6 +143,32 @@
       ],
       "dependsOn": [
         "Build Release Win32 Sandbox"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      },
+      "options": {
+        "shell": {
+          "executable": "cmd.exe",
+          "args": [
+            "/d",
+            "/c"
+          ]
+        }
+      }
+    },
+    {
+      "label": "Run Debug Win32 Sandbox",
+      "type": "shell",
+      "command": "start",
+      "args": [
+        "cmd",
+        "/k",
+        "${workspaceFolder}\\Build\\Debug\\sandbox.exe"
+      ],
+      "dependsOn": [
+        "Build Debug Win32 Sandbox"
       ],
       "group": {
         "kind": "build",
